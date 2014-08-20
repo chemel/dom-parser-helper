@@ -50,7 +50,7 @@ class HtmlDomParserHelper {
 
         $curl = $this->getCurl();
 
-        return $curl->get( $url );
+        return $this->response = $curl->get( $url );
     }
 
     /**
@@ -62,9 +62,19 @@ class HtmlDomParserHelper {
      */
     public function getHtmlDomParser( $html ) {
 
-        $parser = HtmlDomParser::str_get_html( $html );
+        return $this->parser = HtmlDomParser::str_get_html( $html );
+    }
 
-        return $parser;
+    /**
+     * Convert encoding to UTF-8
+     *
+     * @param string content
+     *
+     * @return string content
+     */
+    public function convertEncodingToUTF8( $content ) {
+
+        return Encoding::toUTF8( $content );
     }
 
     /**
@@ -74,13 +84,11 @@ class HtmlDomParserHelper {
      */
     public function parse( $url ) {
 
-        $this->response = $this->performRequest( $url );
+        $content = $this->performRequest( $url )->getContent();
 
-        $content = $this->response->getContent();
+        $content = $this->convertEncodingToUTF8( $content );
 
-        $content = Encoding::toUTF8( $content );
-
-        return $this->parser = $this->getHtmlDomParser( $content );
+        return $this->getHtmlDomParser( $content );
     }
 
     /**
@@ -123,5 +131,18 @@ class HtmlDomParserHelper {
         $node = $this->parser->find('meta[name=description]', 0);
 
         if( $node ) return $node->getAttribute('content');
+    }
+
+    /**
+     * Clean up memory
+     */
+    public function clear() {
+
+        $this->response = null;
+
+        if( $this->parser )
+            $this->parser->clear();
+
+        $this->parser = null;
     }
 }
