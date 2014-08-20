@@ -1,5 +1,6 @@
 {
     "name": "alc/dom-parser-helper",
+    "description": "PHP Simple HTML DOM Parser Helper",
     "autoload": {
         "psr-0": { "Alc": "src/" }
     },
@@ -7,5 +8,6 @@
         "alc/curl": "dev-master",
         "straube/utf8-encoding": "dev-master",
         "sunra/php-simple-html-dom-parser": "dev-master"
-    }
+    },
+    "minimum-stability": "dev"
 }

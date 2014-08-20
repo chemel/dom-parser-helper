@@ -112,4 +112,16 @@ class HtmlDomParserHelper {
 
         return $this->parser->find('title', 0)->innertext;
     }
+
+    /**
+     * Get page description
+     *
+     * @return string description 
+     */
+    public function getPageDescription() {
+
+        $node = $this->parser->find('meta[name=description]', 0);
+
+        if( $node ) return $node->getAttribute('content');
+    }
 }
