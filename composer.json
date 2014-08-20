@@ -1,0 +1,11 @@
+{
+    "name": "alc/dom-parser-helper",
+    "autoload": {
+        "psr-0": { "Alc": "src/" }
+    },
+    "require": {
+        "alc/curl": "dev-master",
+        "straube/utf8-encoding": "dev-master",
+        "sunra/php-simple-html-dom-parser": "dev-master"
+    }
+}
