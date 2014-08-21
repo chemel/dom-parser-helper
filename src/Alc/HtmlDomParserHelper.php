@@ -134,6 +134,86 @@ class HtmlDomParserHelper {
     }
 
     /**
+     * Get page favicon url
+     *
+     * @return string url
+     */
+    public function getPageFavicon() {
+
+        $node = $this->parser->find('link[rel=shortcut], link[rel=icon], link[rel=shortcut icon]', 0);
+
+        if( $node ) return $node->getAttribute('href');
+    }
+
+    /**
+     * Get page canonical url
+     *
+     * @return string url
+     */
+    public function getPageCanonical() {
+
+        $node = $this->parser->find('link[rel=canonical]', 0);
+
+        if( $node ) return $node->getAttribute('href');
+    }
+
+    /**
+     * Get meta description
+     *
+     * @return array metas
+     */
+    public function getPageMetas() {
+
+        $nodes = $this->parser->find('meta');
+
+        $metas = array();
+
+        foreach( $nodes as $node ) {
+
+            if( $node->hasAttribute('name') ) {
+
+                $metas[ $node->getAttribute('name') ] = $node->getAttribute('content');
+            }
+            elseif( $node->hasAttribute('property') ) {
+
+                $metas[ $node->getAttribute('property') ] = $node->getAttribute('content');
+            }
+        }
+
+        return $metas;
+    }
+
+    /**
+     * Get rss feeds urls
+     *
+     * @return array feeds
+     */
+    public function getPageFeeds() {
+
+        $nodes = $this->parser->find('link');
+
+        $feeds = array();
+
+        $types = array(
+            'application/rss+xml',
+            'application/atom+xml',
+            'text/xml',
+        );
+
+        foreach( $nodes as $node ) {
+
+            $type = strtolower($node->getAttribute('type'));
+
+            if( in_array($type, $types) ) {
+
+                $feeds[] = $node->getAttribute('href');
+            }
+        }
+
+        return $feeds;
+    }
+
+    /**
      * Clean up memory
      */
     public function clear() {
