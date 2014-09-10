@@ -3,7 +3,7 @@
 namespace Alc;
 
 use Alc\Curl\Curl;
-use Straube\UTF8\Encoding;
+use ForceUTF8\Encoding;
 use Sunra\PhpSimple\HtmlDomParser;
 
 /**

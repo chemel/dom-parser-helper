@@ -6,7 +6,7 @@
     },
     "require": {
         "alc/curl": "dev-master",
-        "straube/utf8-encoding": "dev-master",
+        "neitanod/forceutf8": "dev-master",
         "sunra/php-simple-html-dom-parser": "dev-master"
     }
 }
