@@ -118,6 +118,8 @@ class HtmlDomParserHelper {
      */
     public function getPageTitle() {
 
+        if( !$this->parser ) return;
+
         return $this->parser->find('title', 0)->innertext;
     }
 
@@ -127,6 +129,8 @@ class HtmlDomParserHelper {
      * @return string description 
      */
     public function getPageDescription() {
+
+        if( !$this->parser ) return;
 
         $node = $this->parser->find('meta[name=description]', 0);
 
@@ -140,6 +144,8 @@ class HtmlDomParserHelper {
      */
     public function getPageFavicon() {
 
+        if( !$this->parser ) return;
+
         $node = $this->parser->find('link[rel=shortcut], link[rel=icon], link[rel=shortcut icon]', 0);
 
         if( $node ) return $node->getAttribute('href');
@@ -152,6 +158,8 @@ class HtmlDomParserHelper {
      */
     public function getPageCanonical() {
 
+        if( !$this->parser ) return;
+
         $node = $this->parser->find('link[rel=canonical]', 0);
 
         if( $node ) return $node->getAttribute('href');
@@ -163,6 +171,8 @@ class HtmlDomParserHelper {
      * @return array metas
      */
     public function getPageMetas() {
+
+        if( !$this->parser ) return;
 
         $nodes = $this->parser->find('meta');
 
@@ -189,6 +199,8 @@ class HtmlDomParserHelper {
      * @return array feeds
      */
     public function getPageFeeds() {
+
+        if( !$this->parser ) return;
 
         $nodes = $this->parser->find('link');
 
