@@ -226,6 +226,55 @@ class HtmlDomParserHelper {
     }
 
     /**
+     * Find all
+     *
+     * @param string selector
+     * @param string results
+     * @param array arguments
+     *
+     * @return array results
+     */
+    public function findAll($selector, $function, $arguments = array()) {
+
+        if( !$this->parser ) return;
+
+        $nodes = $this->parser->find($selector);
+
+        if( !$nodes ) return;
+
+        if( !is_array($arguments) ) $arguments = array($arguments);
+
+        $results = array();
+
+        foreach( $nodes as $node ) {
+
+            $results[] = call_user_func_array(array($node, $function), $arguments);
+        }
+
+        return $results;
+    }
+
+    /**
+     * Find all urls
+     *
+     * @return array results
+     */
+    public function findAllUrls() {
+
+        return $this->findAll('a', 'getAttribute', 'href');
+    }
+
+    /**
+     * Find all images urls
+     *
+     * @return array results
+     */
+    public function findAllImages() {
+
+        return $this->findAll('img', 'getAttribute', 'src');
+    }
+
+    /**
      * Clean up memory
      */
     public function clear() {
