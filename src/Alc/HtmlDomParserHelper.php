@@ -138,17 +138,17 @@ class HtmlDomParserHelper {
     }
 
     /**
-     * Get page favicon url
+     * Get page keywords
      *
      * @return string url
      */
-    public function getPageFavicon() {
+    public function getPageKeywords() {
 
         if( !$this->parser ) return;
 
-        $node = $this->parser->find('link[rel=shortcut], link[rel=icon], link[rel=shortcut icon]', 0);
+        $node = $this->parser->find('meta[name=keywords]', 0);
 
-        if( $node ) return $node->getAttribute('href');
+        if( $node ) return $node->getAttribute('content');
     }
 
     /**
@@ -161,6 +161,20 @@ class HtmlDomParserHelper {
         if( !$this->parser ) return;
 
         $node = $this->parser->find('link[rel=canonical]', 0);
+
+        if( $node ) return $node->getAttribute('href');
+    }
+
+    /**
+     * Get page favicon url
+     *
+     * @return string url
+     */
+    public function getPageFavicon() {
+
+        if( !$this->parser ) return;
+
+        $node = $this->parser->find('link[rel=shortcut], link[rel=icon], link[rel=shortcut icon]', 0);
 
         if( $node ) return $node->getAttribute('href');
     }
