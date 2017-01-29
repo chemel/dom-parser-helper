@@ -53,7 +53,7 @@ class HtmlDomParserHelper
      */
     protected function configureClient(&$client)
     {
-        $client->useChrome();
+        // $client->useChrome();
     }
 
     /**
