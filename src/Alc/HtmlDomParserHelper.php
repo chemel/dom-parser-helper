@@ -26,7 +26,7 @@ class HtmlDomParserHelper {
 
         $this->configureClient( $client );
 
-        return $client;
+        return $client->getClient();
     }
 
     /**
