@@ -2,7 +2,7 @@
 
 namespace Alc;
 
-use Alc\Curl\Curl;
+use Alc\Guzzle\Guzzle;
 use ForceUTF8\Encoding;
 use Sunra\PhpSimple\HtmlDomParser;
 
@@ -20,13 +20,13 @@ class HtmlDomParserHelper {
      *
      * @return Curl curl
      */
-    public function getCurl() {
+    public function getClient() {
 
-        $curl = new Curl();
+        $client = new Guzzle();
 
-        $this->configureCurl( $curl );
+        $this->configureClient( $client );
 
-        return $curl;
+        return $client;
     }
 
     /**
@@ -34,9 +34,9 @@ class HtmlDomParserHelper {
      *
      * @param Curl curl
      */
-    protected function configureCurl( Curl &$curl ) {
+    protected function configureClient( &$client ) {
 
-        $curl->useChrome();
+        $client->useChrome();
     }
 
     /**
@@ -48,9 +48,9 @@ class HtmlDomParserHelper {
      */
     public function performRequest( $url ) {
 
-        $curl = $this->getCurl();
+        $client = $this->getClient();
 
-        return $this->response = $curl->get( $url );
+        return $this->response = $client->get( $url );
     }
 
     /**
@@ -84,7 +84,7 @@ class HtmlDomParserHelper {
      */
     public function parse( $url ) {
 
-        $content = $this->performRequest( $url )->getContent();
+        $content = $this->performRequest( $url )->getBody()->getContents();
 
         $content = $this->convertEncodingToUTF8( $content );
 
@@ -114,7 +114,7 @@ class HtmlDomParserHelper {
     /**
      * Get page title
      *
-     * @return string title 
+     * @return string title
      */
     public function getPageTitle() {
 
@@ -126,7 +126,7 @@ class HtmlDomParserHelper {
     /**
      * Get page description
      *
-     * @return string description 
+     * @return string description
      */
     public function getPageDescription() {
 
