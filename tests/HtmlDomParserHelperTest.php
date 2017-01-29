@@ -12,8 +12,7 @@ echo $helper->getPageTitle(), "\n";
 
 $nodes = $parser->find('td.title a');
 
-foreach( $nodes as $node ) {
-
+foreach ($nodes as $node) {
     $title = $node->innertext;
 
     echo $title, "\n";

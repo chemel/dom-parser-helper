@@ -8,5 +8,5 @@ $helper = new HtmlDomParserHelper();
 
 $parser = $helper->parse('https://news.ycombinator.com/');
 
-print_r( $helper->findAllUrls() );
-print_r( $helper->findAllImages() );
+print_r($helper->findAllUrls());
+print_r($helper->findAllImages());
