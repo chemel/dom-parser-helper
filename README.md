@@ -2,11 +2,11 @@
 
 PHP Simple HTML DOM Parser Helper
 
-## Install:
+## Install via composer
 
 ```bash
 
-composer install
+composer require alc/dom-parser-helper
 
 ```
 
@@ -54,3 +54,5 @@ foreach( $nodes as $node ) {
 
 // Clean memory
 $helper->clear();
+
+```
