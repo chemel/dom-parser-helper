@@ -139,7 +139,11 @@ class HtmlDomParserHelper
             return;
         }
 
-        return $this->parser->find('title', 0)->innertext;
+        $node = $this->parser->find('title', 0);
+
+        if ($node) {
+            return $node->innertext;
+        }
     }
 
     /**
