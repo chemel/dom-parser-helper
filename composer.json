@@ -8,7 +8,8 @@
     "authors": [
         {
             "name": "Alexis CHEMEL",
-            "homepage": "https://github.com/chemel"
+            "homepage": "https://github.com/chemel",
+            "email": "github@chemel.fr"
         }
     ],
     "autoload": {
