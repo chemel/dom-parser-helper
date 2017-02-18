@@ -135,11 +135,11 @@ class HtmlDomParserHelper
      */
     public function getPageTitle()
     {
-        if (!$this->parser) {
+        if (!$parser = $this->getParser()) {
             return;
         }
 
-        $node = $this->parser->find('title', 0);
+        $node = $parser->find('title', 0);
 
         if ($node) {
             return $node->innertext;
@@ -153,11 +153,11 @@ class HtmlDomParserHelper
      */
     public function getPageDescription()
     {
-        if (!$this->parser) {
+        if (!$parser = $this->getParser()) {
             return;
         }
 
-        $node = $this->parser->find('meta[name=description]', 0);
+        $node = $parser->find('meta[name=description]', 0);
 
         if ($node) {
             return $node->getAttribute('content');
@@ -171,11 +171,11 @@ class HtmlDomParserHelper
      */
     public function getPageKeywords()
     {
-        if (!$this->parser) {
+        if (!$parser = $this->getParser()) {
             return;
         }
 
-        $node = $this->parser->find('meta[name=keywords]', 0);
+        $node = $parser->find('meta[name=keywords]', 0);
 
         if ($node) {
             return $node->getAttribute('content');
@@ -189,11 +189,11 @@ class HtmlDomParserHelper
      */
     public function getPageCanonical()
     {
-        if (!$this->parser) {
+        if (!$parser = $this->getParser()) {
             return;
         }
 
-        $node = $this->parser->find('link[rel=canonical]', 0);
+        $node = $parser->find('link[rel=canonical]', 0);
 
         if ($node) {
             return $node->getAttribute('href');
@@ -207,11 +207,11 @@ class HtmlDomParserHelper
      */
     public function getPageFavicon()
     {
-        if (!$this->parser) {
+        if (!$parser = $this->getParser()) {
             return;
         }
 
-        $node = $this->parser->find('link[rel=shortcut], link[rel=icon], link[rel=shortcut icon]', 0);
+        $node = $parser->find('link[rel=shortcut], link[rel=icon], link[rel=shortcut icon]', 0);
 
         if ($node) {
             return $node->getAttribute('href');
@@ -225,11 +225,11 @@ class HtmlDomParserHelper
      */
     public function getPageMetas()
     {
-        if (!$this->parser) {
+        if (!$parser = $this->getParser()) {
             return;
         }
 
-        $nodes = $this->parser->find('meta');
+        $nodes = $parser->find('meta');
 
         $metas = array();
 
@@ -251,11 +251,11 @@ class HtmlDomParserHelper
      */
     public function getPageFeeds()
     {
-        if (!$this->parser) {
+        if (!$parser = $this->getParser()) {
             return;
         }
 
-        $nodes = $this->parser->find('link');
+        $nodes = $parser->find('link');
 
         $feeds = array();
 
@@ -287,11 +287,11 @@ class HtmlDomParserHelper
      */
     public function findAll($selector, $function, $arguments = array())
     {
-        if (!$this->parser) {
+        if (!$parser = $this->getParser()) {
             return;
         }
 
-        $nodes = $this->parser->find($selector);
+        $nodes = $parser->find($selector);
 
         if (!$nodes) {
             return;
