@@ -5,7 +5,7 @@ namespace Alc;
 use Alc\Guzzle\GuzzleHelper;
 use GuzzleHttp\ClientInterface;
 use ForceUTF8\Encoding;
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 /**
  * HtmlDomParserHelper

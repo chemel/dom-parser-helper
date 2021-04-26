@@ -8,8 +8,7 @@
     "authors": [
         {
             "name": "Alexis CHEMEL",
-            "homepage": "https://github.com/chemel",
-            "email": "github@chemel.fr"
+            "homepage": "https://github.com/chemel"
         }
     ],
     "autoload": {
@@ -21,7 +20,7 @@
         "php": ">=5.5.0",
         "alc/guzzle-helper": "^1.0",
         "neitanod/forceutf8": "^2.0",
-        "sunra/php-simple-html-dom-parser": "^1.5"
+        "kub-at/php-simple-html-dom-parser": "^1.9"
     },
     "extra": {
         "branch-alias": {
