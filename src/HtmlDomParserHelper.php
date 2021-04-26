@@ -2,10 +2,10 @@
 
 namespace Alc;
 
-use Alc\Guzzle\GuzzleHelper;
 use GuzzleHttp\ClientInterface;
-use ForceUTF8\Encoding;
+use GuzzleHttp\Client as HttpClient;
 use KubAT\PhpSimple\HtmlDomParser;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * HtmlDomParserHelper
@@ -29,31 +29,31 @@ class HtmlDomParserHelper
     }
 
     /**
-     * Get new Curl instance
+     * Get Client instance
      *
-     * @return Curl curl
+     * @return HttpClient client
      */
     public function getClient()
     {
         if (!$this->client) {
-            $client = new GuzzleHelper();
+            $client = new HttpClient();
 
             $this->configureClient($client);
 
-            return $this->client = $client->getClient();
+            return $this->client = $client;
         }
 
         return $this->client;
     }
 
     /**
-     * Configure Curl instance
+     * Configure HttpClient instance
      *
-     * @param Curl curl
+     * @param HttpClient client
      */
     protected function configureClient(&$client)
     {
-        // $client->useChrome();
+
     }
 
     /**
@@ -61,9 +61,9 @@ class HtmlDomParserHelper
      *
      * @param string url
      *
-     * @return CurlResponse response
+     * @return ResponseInterface response
      */
-    public function performRequest($url)
+    public function performRequest($url): ResponseInterface
     {
         $client = $this->getClient();
 
@@ -73,7 +73,7 @@ class HtmlDomParserHelper
     /**
      * Get HtmlDomParser
      *
-     * @param string html_content
+     * @param string html
      *
      * @return HtmlDomParser parser
      */
@@ -83,27 +83,13 @@ class HtmlDomParserHelper
     }
 
     /**
-     * Convert encoding to UTF-8
-     *
-     * @param string content
-     *
-     * @return string content
-     */
-    public function convertEncodingToUTF8($content)
-    {
-        return Encoding::toUTF8($content);
-    }
-
-    /**
      * Parse webpage
      *
-     * @return string url;
+     * @return HtmlDomParser parser;
      */
     public function parse($url)
     {
         $content = $this->performRequest($url)->getBody()->getContents();
-
-        $content = $this->convertEncodingToUTF8($content);
 
         return $this->getHtmlDomParser($content);
     }
@@ -111,9 +97,9 @@ class HtmlDomParserHelper
     /**
      * Get curl response
      *
-     * @return CurlResponse reponse
+     * @return ResponseInterface response
      */
-    public function getResponse()
+    public function getResponse(): ResponseInterface
     {
         return $this->response;
     }
