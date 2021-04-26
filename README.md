@@ -45,7 +45,7 @@ print_r( $helper->getPageFeeds() );
 // Get all urls
 print_r( $helper->findAllUrls() );
 
-// Get Sunra HtmlDomParser and exec queries (see: https://github.com/sunra/php-simple-html-dom-parser)
+// Get the php-simple-html-dom-parser
 $nodes = $parser->find('a');
 
 foreach( $nodes as $node ) {
